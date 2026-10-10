@@ -1,0 +1,1397 @@
+/* =========================================================
+   MUMMY BIRTHDAY
+   CINEMATIC BIRTHDAY EXPERIENCE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #080509;
+    color: #fff;
+    font-family: "Cormorant Garamond", serif;
+}
+
+
+/* =========================================================
+   MAIN STAGE
+========================================================= */
+
+#stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   EVERY SCENE
+========================================================= */
+
+.scene {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(1.06);
+
+    transition:
+        opacity 1s ease,
+        transform 1.2s cubic-bezier(.22, .61, .36, 1),
+        visibility 1s;
+}
+
+.scene.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+
+/* =========================================================
+   COMMON TEXT
+========================================================= */
+
+.tiny-text {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 14px;
+
+    letter-spacing: 0.3em;
+
+    text-transform: uppercase;
+
+    color: #ffb8c9;
+
+    margin-bottom: 22px;
+}
+
+.action-text {
+    position: absolute;
+
+    bottom: 55px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 0.25em;
+
+    color: rgba(255,255,255,.65);
+
+    animation: actionPulse 2s infinite;
+}
+
+.action-button {
+    margin-top: 35px;
+
+    padding: 13px 26px;
+
+    border: 1px solid rgba(255,255,255,.35);
+
+    border-radius: 100px;
+
+    background: rgba(255,255,255,.08);
+
+    backdrop-filter: blur(12px);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: .05em;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.action-button:hover {
+    background: #ff477e;
+
+    border-color: #ff477e;
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+        0 15px 40px rgba(255,71,126,.3);
+}
+
+.action-button.big {
+    padding: 17px 35px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   SCENE 1 — OPENING
+========================================================= */
+
+.scene1 {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #3c162b 0%,
+            #170b14 42%,
+            #080509 80%
+        );
+}
+
+.scene-glow {
+    position: absolute;
+
+    width: 55vw;
+    height: 55vw;
+
+    border-radius: 50%;
+
+    background: #ff477e;
+
+    opacity: .08;
+
+    filter: blur(100px);
+
+    animation: slowGlow 6s ease-in-out infinite alternate;
+}
+
+.opening-text {
+    position: absolute;
+
+    top: 11%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 90%;
+
+    text-align: center;
+
+    z-index: 3;
+}
+
+.opening-text h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size:
+        clamp(38px, 5vw, 75px);
+
+    line-height: 1;
+
+    font-weight: 700;
+}
+
+.opening-text h1 span {
+    display: block;
+
+    color: #ff6f9b;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size:
+        clamp(55px, 7vw, 100px);
+
+    margin-top: 8px;
+}
+
+.hint {
+    margin-top: 18px;
+
+    color: rgba(255,255,255,.55);
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   GIFT
+========================================================= */
+
+.gift {
+    position: absolute;
+
+    left: 50%;
+    top: 57%;
+
+    width: 190px;
+    height: 150px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+.gift-box {
+    position: absolute;
+
+    left: 15px;
+    bottom: 0;
+
+    width: 160px;
+    height: 105px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c51e58,
+            #f0447b,
+            #c51e58
+        );
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.35);
+
+    transition:
+        transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.gift-box .gift-ribbon {
+    position: absolute;
+
+    left: 66px;
+
+    top: 0;
+
+    width: 28px;
+    height: 100%;
+
+    background: #ffd34e;
+}
+
+.gift-lid {
+    position: absolute;
+
+    left: 5px;
+    top: 25px;
+
+    width: 180px;
+    height: 35px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e12c69,
+            #ff5d8c,
+            #e12c69
+        );
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.3);
+
+    z-index: 3;
+
+    transition:
+        transform .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.gift-lid .gift-ribbon {
+    position: absolute;
+
+    left: 76px;
+
+    width: 28px;
+    height: 100%;
+
+    background: #ffd34e;
+}
+
+.gift-bow {
+    position: absolute;
+
+    top: -12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 55px;
+
+    z-index: 5;
+
+    transition:
+        transform .9s ease;
+}
+
+.gift:hover .gift-box {
+    transform: translateY(-7px);
+}
+
+.gift:hover .gift-lid {
+    transform:
+        translateY(-12px)
+        rotate(-2deg);
+}
+
+
+/* =========================================================
+   SCENE 2 — MUMMY REVEAL
+========================================================= */
+
+.scene2 {
+    background:
+        radial-gradient(
+            circle at center,
+            #5c203d,
+            #180b15 70%
+        );
+}
+
+.scene2-background {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255,71,126,.18),
+            transparent 40%
+        );
+}
+
+.reveal-content {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.main-photo {
+    width:
+        min(330px, 55vw);
+
+    height:
+        min(430px, 60vh);
+
+    padding: 8px;
+
+    background: #fff;
+
+    box-shadow:
+        0 35px 80px rgba(0,0,0,.5);
+
+    transform:
+        rotate(-3deg)
+        scale(.75);
+
+    opacity: 0;
+
+    transition:
+        transform 1.4s cubic-bezier(.16,1,.3,1),
+        opacity 1s ease;
+}
+
+.scene2.active .main-photo {
+    transform:
+        rotate(-3deg)
+        scale(1);
+
+    opacity: 1;
+}
+
+.main-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.reveal-content h2 {
+    margin-top: 25px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(45px, 6vw, 90px);
+
+    line-height: .9;
+}
+
+.reveal-content h2 span {
+    color: #ff477e;
+}
+
+#mummySubtitle {
+    margin-top: 12px;
+
+    color: rgba(255,255,255,.65);
+
+    font-size: 19px;
+}
+
+
+/* =========================================================
+   SCENE 3 — SUPERPOWERS
+========================================================= */
+
+.scene3 {
+    background:
+        linear-gradient(
+            135deg,
+            #100914,
+            #281026,
+            #100914
+        );
+}
+
+.spotlight {
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,71,126,.15),
+            transparent 70%
+        );
+
+    filter: blur(10px);
+}
+
+.scene-content {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+.scene-content h2 {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(45px, 6vw, 85px);
+
+    line-height: .95;
+}
+
+.scene-content h2 span {
+    color: #ff477e;
+}
+
+.power-card {
+    width:
+        min(450px, 85vw);
+
+    margin:
+        50px auto 0;
+
+    padding: 40px 30px;
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.3);
+
+    animation:
+        cardFloat 3s ease-in-out infinite;
+}
+
+.power-icon {
+    font-size: 65px;
+
+    margin-bottom: 20px;
+}
+
+.power-card h3 {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 30px;
+
+    color: #ffd34e;
+}
+
+.power-card p {
+    margin-top: 15px;
+
+    color: rgba(255,255,255,.65);
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   SCENE 4 — DANCE
+========================================================= */
+
+.scene4 {
+    background:
+        radial-gradient(
+            circle at center,
+            #7b163d,
+            #1b0712 70%
+        );
+}
+
+.dance-background {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(255,211,78,.15),
+            transparent 20%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(255,71,126,.18),
+            transparent 25%
+        );
+}
+
+.dance-content {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+.dance-content h2 {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(50px, 7vw, 95px);
+}
+
+.dance-content h3 {
+    margin-top: 10px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(30px, 4vw, 55px);
+}
+
+.dance-content h3 span {
+    color: #ffd34e;
+}
+
+.music-disc {
+    width: 130px;
+    height: 130px;
+
+    margin: 40px auto;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111,
+            #3d2630
+        );
+
+    border:
+        8px solid #ff477e;
+
+    font-size: 50px;
+
+    box-shadow:
+        0 0 60px rgba(255,71,126,.35);
+
+    animation:
+        discSpin 5s linear infinite;
+}
+
+.music-name {
+    margin-top: 18px;
+
+    color: rgba(255,255,255,.55);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: .15em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SCENE 5 — MEMORY
+========================================================= */
+
+.scene5 {
+    background:
+        #080509;
+}
+
+.memory-background {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #48202f,
+            transparent 65%
+        );
+}
+
+.memory-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 90%;
+
+    text-align: center;
+}
+
+.memory-photo {
+    width:
+        min(600px, 75vw);
+
+    height:
+        min(65vh, 650px);
+
+    margin: auto;
+
+    padding: 10px;
+
+    background: white;
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.65);
+
+    transform:
+        scale(.8)
+        rotate(-2deg);
+
+    transition:
+        transform .8s ease,
+        opacity .6s ease;
+}
+
+.memory-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.memory-number {
+    margin-top: 25px;
+
+    color: #ff477e;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: .3em;
+}
+
+.memory-caption {
+    margin-top: 10px;
+
+    font-size: 28px;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   SCENE 6 — FAMILY
+========================================================= */
+
+.scene6 {
+    background:
+        linear-gradient(
+            135deg,
+            #24101c,
+            #5b1c38
+        );
+}
+
+.family-content {
+    position: relative;
+
+    width: 90%;
+
+    text-align: center;
+}
+
+.family-photos {
+    position: relative;
+
+    width:
+        min(700px, 85vw);
+
+    height:
+        min(60vh, 600px);
+
+    margin: auto;
+}
+
+.family-photos img {
+    position: absolute;
+
+    width: 48%;
+    height: 48%;
+
+    object-fit: cover;
+
+    padding: 7px;
+
+    background: white;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.4);
+
+    transition:
+        transform .7s ease;
+}
+
+.family-photos img:nth-child(1) {
+    left: 0;
+    top: 0;
+
+    transform:
+        rotate(-7deg);
+}
+
+.family-photos img:nth-child(2) {
+    right: 0;
+    top: 5%;
+
+    transform:
+        rotate(5deg);
+}
+
+.family-photos img:nth-child(3) {
+    left: 5%;
+    bottom: 0;
+
+    transform:
+        rotate(4deg);
+}
+
+.family-photos img:nth-child(4) {
+    right: 4%;
+    bottom: 0;
+
+    transform:
+        rotate(-5deg);
+}
+
+.family-content h2 {
+    margin-top: 35px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(35px, 5vw, 65px);
+
+    line-height: .95;
+}
+
+.family-content h2 span {
+    display: block;
+
+    color: #ff7da5;
+}
+
+
+/* =========================================================
+   SCENE 7 — VIDEO
+========================================================= */
+
+.scene7 {
+    background:
+        #050405;
+}
+
+.video-content {
+    width: 90%;
+
+    max-width: 1000px;
+
+    text-align: center;
+}
+
+.video-content h2 {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(45px, 6vw, 75px);
+
+    margin-bottom: 30px;
+}
+
+.video-content h2 span {
+    color: #ff477e;
+}
+
+#memoryVideo {
+    width: 100%;
+    max-height: 62vh;
+
+    display: block;
+
+    background: black;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.6);
+}
+
+
+/* =========================================================
+   SCENE 8 — CAKE
+========================================================= */
+
+.scene8 {
+    background:
+        radial-gradient(
+            circle at center,
+            #4c1a34,
+            #09050a 70%
+        );
+}
+
+.cake-content {
+    text-align: center;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.cake-content h2 {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(45px, 6vw, 80px);
+
+    line-height: .9;
+}
+
+.cake-content h2 span {
+    display: block;
+
+    color: #ff477e;
+}
+
+
+/* CAKE */
+
+.cake {
+    position: relative;
+
+    width: 260px;
+    height: 220px;
+
+    margin:
+        55px auto 20px;
+}
+
+.cake-plate {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 260px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            #eee,
+            #aaa
+        );
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.4);
+}
+
+.cake-body {
+    position: absolute;
+
+    bottom: 20px;
+    left: 25px;
+
+    width: 210px;
+    height: 100px;
+
+    border-radius:
+        12px 12px 25px 25px;
+
+    background:
+        linear-gradient(
+            #ff7098,
+            #bd2859
+        );
+
+    box-shadow:
+        inset 0 -12px 0 rgba(0,0,0,.1);
+}
+
+.cake-top {
+    position: absolute;
+
+    left: 25px;
+    bottom: 100px;
+
+    width: 210px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    background:
+        #ffb3c7;
+
+    box-shadow:
+        inset 0 -8px 0 rgba(255,255,255,.2);
+}
+
+.candle {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 150px;
+
+    width: 20px;
+    height: 65px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 5px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #ffd34e 0,
+            #ffd34e 8px,
+            #fff 8px,
+            #fff 16px
+        );
+
+    z-index: 4;
+}
+
+.flame {
+    position: absolute;
+
+    left: 50%;
+    top: -35px;
+
+    width: 22px;
+    height: 35px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    background:
+        radial-gradient(
+            circle at 50% 70%,
+            #fff 0 15%,
+            #ffd34e 35%,
+            #ff7b22 70%
+        );
+
+    filter:
+        drop-shadow(
+            0 0 15px #ff9d00
+        );
+
+    animation:
+        flameMove .6s infinite alternate;
+}
+
+
+/* =========================================================
+   SCENE 9 — FINAL
+========================================================= */
+
+.scene9 {
+    background:
+        radial-gradient(
+            circle at center,
+            #641c3c,
+            #10060c 75%
+        );
+}
+
+.final-content {
+    position: relative;
+
+    z-index: 3;
+
+    width: 90%;
+
+    text-align: center;
+}
+
+.final-photo {
+    width:
+        min(310px, 50vw);
+
+    height:
+        min(400px, 48vh);
+
+    margin: auto;
+
+    padding: 8px;
+
+    background: white;
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.6);
+
+    transform:
+        scale(.5);
+
+    opacity: 0;
+
+    transition:
+        transform 1.5s cubic-bezier(.16,1,.3,1),
+        opacity 1.2s ease;
+}
+
+.scene9.active .final-photo {
+    transform:
+        scale(1)
+        rotate(-2deg);
+
+    opacity: 1;
+}
+
+.final-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.final-content h1 {
+    margin-top: 30px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(40px, 6vw, 80px);
+
+    line-height: .85;
+}
+
+.final-content h1 span {
+    display: block;
+
+    color: #ff477e;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        1.3em;
+}
+
+.final-content > p {
+    margin-top: 20px;
+
+    font-size: 19px;
+
+    color: rgba(255,255,255,.7);
+}
+
+.final-message {
+    margin-top: 20px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 45px;
+
+    color: #ffd34e;
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.final-confetti {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+
+    top: -30px;
+
+    width: 8px;
+    height: 14px;
+
+    animation:
+        confettiFall
+        linear
+        forwards;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes slowGlow {
+
+    from {
+        transform:
+            scale(.9);
+        opacity: .06;
+    }
+
+    to {
+        transform:
+            scale(1.15);
+        opacity: .13;
+    }
+
+}
+
+@keyframes actionPulse {
+
+    0%,
+    100% {
+        opacity: .4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+@keyframes cardFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-8px);
+    }
+
+}
+
+@keyframes discSpin {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+@keyframes flameMove {
+
+    from {
+        transform:
+            translateX(-50%)
+            scale(1)
+            rotate(-3deg);
+    }
+
+    to {
+        transform:
+            translateX(-50%)
+            scale(1.12)
+            rotate(3deg);
+    }
+
+}
+
+@keyframes confettiFall {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .opening-text {
+        top: 8%;
+    }
+
+    .opening-text h1 {
+        font-size: 37px;
+    }
+
+    .opening-text h1 span {
+        font-size: 55px;
+    }
+
+    .hint {
+        font-size: 15px;
+    }
+
+    .gift {
+        transform:
+            translate(-50%, -50%)
+            scale(.8);
+    }
+
+    .main-photo {
+        width: 260px;
+        height: 350px;
+    }
+
+    .power-card {
+        padding: 30px 20px;
+    }
+
+    .family-photos {
+        height: 420px;
+    }
+
+    .family-photos img {
+        width: 50%;
+        height: 50%;
+    }
+
+    .cake {
+        transform:
+            scale(.8);
+    }
+
+    .final-photo {
+        width: 240px;
+        height: 300px;
+    }
+
+    .final-content h1 {
+        font-size: 42px;
+    }
+
+    .final-message {
+        font-size: 35px;
+    }
+
+}
